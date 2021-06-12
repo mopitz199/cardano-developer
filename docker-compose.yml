@@ -189,8 +189,6 @@ services:
       - "GF_SMTP_USER=${GF_SMTP_USER}"
       - "GF_SMTP_PASSWORD=${GF_SMTP_PASSWORD}"
       - "GF_SMTP_FROM_ADDRESS=${GF_SMTP_FROM_ADDRESS}"
-    networks:
-      - main # <== Placing traefik on the network named main, to access containers on this network
     labels:
       #### Labels define the behavior and rules of the traefik proxy for this container ####
       - "traefik.enable=true" # <== Enable traefik to proxy this container
