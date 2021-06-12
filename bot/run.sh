@@ -1,0 +1,1 @@
+cd /bot && /usr/local/bin/flask send-pool-info

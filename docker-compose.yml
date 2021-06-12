@@ -1,0 +1,182 @@
+version: "3.5"
+
+services:
+  redis:
+    image: "redis:alpine"
+  bot:
+    build:
+      dockerfile: bot/Dockerfile
+      context: .
+    volumes:
+      - ./bot:/bot
+    depends_on:
+        - redis
+  traefik:
+    image: traefik
+    restart: always
+    container_name: traefik
+    ports:
+      - "80:80" # <== http
+      - "8080:8080" # <== :8080 is where the dashboard runs on
+      - "443:443" # <== https
+    command:
+    #### These are the CLI commands that will configure Traefik and tell it how to work! ####
+      ## API Settings - https://docs.traefik.io/operations/api/, endpoints - https://docs.traefik.io/operations/api/#endpoints ##
+      - --api.insecure=true # <== Enabling insecure api, NOT RECOMMENDED FOR PRODUCTION
+      - --api.dashboard=true # <== Enabling the dashboard to view services, middlewares, routers, etc...
+      - --api.debug=false # <== Enabling additional endpoints for debugging and profiling
+      ## Log Settings (options: ERROR, DEBUG, PANIC, FATAL, WARN, INFO) - https://docs.traefik.io/observability/logs/ ##
+      - --log.level=DEBUG # <== Setting the level of the logs from traefik
+      ## Provider Settings - https://docs.traefik.io/providers/docker/#provider-configuration ##
+      - --providers.docker=true # <== Enabling docker as the provider for traefik
+      - --providers.docker.exposedbydefault=false # <== Don't expose every container to traefik, only expose enabled ones
+      - --providers.file.filename=/traefik/dynamic.yaml # <== Referring to a dynamic configuration file
+      - --providers.docker.network=main # <== Operate on the docker network named web
+      ## Entrypoints Settings - https://docs.traefik.io/routing/entrypoints/#configuration ##
+      - --entrypoints.server-entrypoint.address=:80 # <== Defining an entrypoint for port :80 named web
+      - --entrypoints.server-secured-entrypoint.address=:443 # <== Defining an entrypoint for https on port :443 named web-secured
+      ## Certificate Settings (Let's Encrypt) -  https://docs.traefik.io/https/acme/#configuration-examples ##
+      - --certificatesresolvers.tls-certificate-resolver.acme.tlschallenge=true # <== Enable TLS-ALPN-01 to generate and renew ACME certs
+      - --certificatesresolvers.tls-certificate-resolver.acme.email=mopitz199@gmail.com # <== Setting email for certs
+      - --certificatesresolvers.tls-certificate-resolver.acme.storage=/letsencrypt/acme.json # <== Defining acme file to store cert information
+    volumes:
+      - ./letsencrypt:/letsencrypt # <== Volume for certs (TLS)
+      - /var/run/docker.sock:/var/run/docker.sock # <== Volume for docker admin
+      - ./traefik:/traefik # <== Volume for dynamic conf file, **ref: line 27
+    labels:
+    #### Labels define the behavior and rules of the traefik proxy for this container ####
+      - "traefik.enable=true" # <== Enable traefik on itself to view dashboard and assign subdomain to view it
+      - "traefik.http.routers.api.rule=Host(`${CARDANO_DOMAIN}/dashboard`)" # <== Setting the domain for the dashboard
+      - "traefik.http.routers.api.service=api@internal" # <== Enabling the api to be a service to access
+  postgres:
+    image: postgres:${POSTGRES_VERSION:-11.5-alpine}
+    environment:
+      - POSTGRES_LOGGING=true
+      - POSTGRES_DB_FILE=/run/secrets/postgres_db
+      - POSTGRES_PASSWORD_FILE=/run/secrets/postgres_password
+      - POSTGRES_USER_FILE=/run/secrets/postgres_user
+    ports:
+      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+    secrets:
+      - postgres_db
+      - postgres_password
+      - postgres_user
+    shm_size: '2gb'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+  api:
+    image: postgrest/postgrest
+    ports:
+      - "${API_PORT}:${API_PORT}"
+    links:
+      - postgres:postgres
+    environment:
+      PGRST_DB_URI: ${POSTGRES_USER}://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_USER}:5432/${POSTGRES_DB}
+      PGRST_DB_SCHEMA: public
+      PGRST_DB_ANON_ROLE: ${POSTGRES_USER} #In production this role should not be the same as the one used for the connection
+      PGRST_SERVER_PROXY_URI: "http://127.0.0.1:${API_PORT}"
+    depends_on:
+      - postgres
+    labels:
+      #### Labels define the behavior and rules of the traefik proxy for this container ####
+      - "traefik.enable=true" # <== Enable traefik to proxy this container
+
+      - "traefik.http.routers.server-router.rule=Host(`${CARDANO_DOMAIN}`)" # <== Your Domain Name goes here for the http rule
+      - "traefik.http.routers.server-router.entrypoints=server-entrypoint" # <== Defining the entrypoint for http, **ref: line 30
+      - "traefik.http.routers.server-router.middlewares=redirect@file" # <== This is a middleware to redirect to https
+
+      - "traefik.http.routers.server-secured-router.entrypoints=server-secured-entrypoint" # <== Defining entrypoint for https
+      - "traefik.http.routers.server-secured-router.rule=Host(`${CARDANO_DOMAIN}`)" # <== Your Domain Name for the https rule 
+      - "traefik.http.routers.server-secured-router.tls.certresolver=tls-certificate-resolver" # <== Defining certsresolvers for https
+  cardano-node:
+    image: inputoutput/cardano-node:${CARDANO_NODE_VERSION:-1.26.2}
+    command: [
+      "run",
+      "--config", "/config/config.json",
+      "--database-path", "/data/db",
+      "--socket-path", "/ipc/node.socket",
+      "--topology", "/config/topology.json"
+    ]
+    volumes:
+      - ./config/network/${NETWORK}/cardano-node:/config
+      - ./config/network/${NETWORK}/genesis:/genesis
+      - node-db:/data/db
+      - node-ipc:/ipc
+    restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "400k"
+        max-file: "20"
+  cardano-db-sync-extended:
+    image: inputoutput/cardano-db-sync:${CARDANO_DB_SYNC_VERSION}
+    command: [
+      "--config", "/config/cardano-db-sync/config.json",
+      "--socket-path", "/node-ipc/node.socket",
+      "--state-dir", "/data"
+    ]
+    environment:
+      - EXTENDED=true
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+    depends_on:
+      - cardano-node
+      - postgres
+    secrets:
+      - postgres_password
+      - postgres_user
+      - postgres_db
+    volumes:
+      - ./config/network/${NETWORK}:/config
+      - db-sync-data:/data
+      - node-ipc:/node-ipc
+    restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+  cardano-wallet:
+    image: inputoutput/cardano-wallet:2021.4.28
+    volumes:
+      - wallet-db:/wallet-db
+      - node-ipc:/ipc
+      - node-config:/config
+    ports:
+      - 8091:8090
+    entrypoint: []
+    command: bash -c "
+        ([[ $$NETWORK == \"mainnet\" ]] && $$CMD --mainnet) ||
+        ([[ $$NETWORK == \"mainnet_candidate*\" ]] && $$CMD --staging /config/*-$$NETWORK-byron-genesis.json) ||
+        ($$CMD --testnet /config/*-$$NETWORK-byron-genesis.json)
+      "
+    environment:
+      CMD: "cardano-wallet serve --node-socket /ipc/node.socket --database /wallet-db --listen-address 0.0.0.0"
+      NETWORK:
+    restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        compress: "true"
+        max-file: "10"
+        max-size: "50m"
+secrets:
+  postgres_db:
+    file: ./secrets/postgres_db
+  postgres_password:
+    file: ./secrets/postgres_password
+  postgres_user:
+    file: ./secrets/postgres_user
+volumes:
+  wallet-db:
+  db-sync-data:
+  node-db:
+  node-ipc:
+  postgres-data:
+  node-config:

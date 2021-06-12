@@ -1,0 +1,5 @@
+Flask== 2.0.1
+discord.py==1.7.2
+requests==2.25.1
+redis==3.5.3
+python-dotenv==0.17.1
