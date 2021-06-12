@@ -109,6 +109,8 @@ services:
       - node-db:/data/db
       - node-ipc:/ipc
     restart: on-failure
+    ports:
+      - 12798:12798
     logging:
       driver: "json-file"
       options:
