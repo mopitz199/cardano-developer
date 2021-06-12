@@ -166,6 +166,10 @@ services:
         compress: "true"
         max-file: "10"
         max-size: "50m"
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus/:/etc/prometheus
 secrets:
   postgres_db:
     file: ./secrets/postgres_db
