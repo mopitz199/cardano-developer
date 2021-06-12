@@ -175,8 +175,14 @@ secrets:
     file: ./secrets/postgres_user
 volumes:
   wallet-db:
+    external: true
   db-sync-data:
+    external: true
   node-db:
+    external: true
   node-ipc:
+    external: true
   postgres-data:
+    external: true
   node-config:
+    external: true
