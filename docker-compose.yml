@@ -172,6 +172,35 @@ services:
       - 9090:9090
     volumes:
       - ./prometheus/:/etc/prometheus
+  grafana:
+    image: grafana/grafana:latest
+    container_name: monitoring_grafana
+    restart: unless-stopped
+    links:
+      - prometheus:prometheus
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    environment:
+      - "GF_SECURITY_ADMIN_PASSWORD=${GF_SECURITY_ADMIN_PASSWORD}"
+      - "GF_USERS_ALLOW_SIGN_UP=${GF_USERS_ALLOW_SIGN_UP}"
+      - "GF_SERVER_DOMAIN=${GF_SERVER_DOMAIN}"
+      - "GF_SMTP_ENABLED=${GF_SMTP_ENABLED}"
+      - "GF_SMTP_HOST=${GF_SMTP_HOST}"
+      - "GF_SMTP_USER=${GF_SMTP_USER}"
+      - "GF_SMTP_PASSWORD=${GF_SMTP_PASSWORD}"
+      - "GF_SMTP_FROM_ADDRESS=${GF_SMTP_FROM_ADDRESS}"
+    networks:
+      - main # <== Placing traefik on the network named main, to access containers on this network
+    labels:
+      #### Labels define the behavior and rules of the traefik proxy for this container ####
+      - "traefik.enable=true" # <== Enable traefik to proxy this container
+      - "traefik.http.routers.grafana-router.rule=Host(`grafana.${DOMAIN}`)" # <== Your Domain Name goes here for the http rule
+      - "traefik.http.routers.grafana-router.entrypoints=server-entrypoint" # <== Defining the entrypoint for http, **ref: line 30
+
+      - "traefik.http.routers.grafana-secured-router.rule=Host(`grafana.${DOMAIN}`)" # <== Your Domain Name for the https rule 
+      - "traefik.http.routers.grafana-secured-router.entrypoints=server-secured-entrypoint" # <== Defining entrypoint for https, **ref: line 31
+      - "traefik.http.routers.grafana-secured-router.tls.certresolver=tls-certificate-resolver" # <== Defining certsresolvers for https
+      - "traefik.http.routers.grafana-router.middlewares=redirect@file" # <== This is a middleware to redirect to https
 secrets:
   postgres_db:
     file: ./secrets/postgres_db
@@ -191,4 +220,6 @@ volumes:
   postgres-data:
     external: true
   node-config:
+    external: true
+  grafana-storage:
     external: true
