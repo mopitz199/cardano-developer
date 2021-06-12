@@ -31,7 +31,6 @@ services:
       - --providers.docker=true # <== Enabling docker as the provider for traefik
       - --providers.docker.exposedbydefault=false # <== Don't expose every container to traefik, only expose enabled ones
       - --providers.file.filename=/traefik/dynamic.yaml # <== Referring to a dynamic configuration file
-      - --providers.docker.network=main # <== Operate on the docker network named web
       ## Entrypoints Settings - https://docs.traefik.io/routing/entrypoints/#configuration ##
       - --entrypoints.server-entrypoint.address=:80 # <== Defining an entrypoint for port :80 named web
       - --entrypoints.server-secured-entrypoint.address=:443 # <== Defining an entrypoint for https on port :443 named web-secured
