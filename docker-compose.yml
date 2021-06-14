@@ -90,6 +90,8 @@ services:
       - "traefik.http.routers.server-router.entrypoints=server-entrypoint" # <== Defining the entrypoint for http, **ref: line 30
       - "traefik.http.routers.server-router.middlewares=redirect@file" # <== This is a middleware to redirect to https
 
+      - "traefik.http.routers.server-secured-router.middlewares=server-secured-middleware"
+      - "traefik.http.middlewares.server-secured-middleware.basicauth.users=${API_ADMIN_PASSWORD}"
       - "traefik.http.routers.server-secured-router.entrypoints=server-secured-entrypoint" # <== Defining entrypoint for https
       - "traefik.http.routers.server-secured-router.rule=Host(`api.${DOMAIN}`)" # <== Your Domain Name for the https rule 
       - "traefik.http.routers.server-secured-router.tls.certresolver=tls-certificate-resolver" # <== Defining certsresolvers for https
