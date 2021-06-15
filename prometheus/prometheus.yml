@@ -8,3 +8,7 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ['cardano-node:12798']
+  - job_name: 'cardano-postgres-db' # To scrape data from the cardano node
+    scrape_interval: 15s
+    static_configs:
+      - targets: ['postgres_exporter:9187']

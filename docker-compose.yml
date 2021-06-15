@@ -69,12 +69,10 @@ services:
       options:
         max-size: "200k"
         max-file: "10"
-  exporter:
+  postgres_exporter:
     image: wrouesnel/postgres_exporter
     environment:
-      DATA_SOURCE_NAME: "${POSTGRES_USER}://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_USER}:5432/${POSTGRES_DB}?sslmode=disable"
-    ports:
-      - "9187:9187"
+      DATA_SOURCE_NAME: "postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?sslmode=disable"
   api:
     image: postgrest/postgrest
     ports:
@@ -82,7 +80,7 @@ services:
     links:
       - postgres:postgres
     environment:
-      PGRST_DB_URI: ${POSTGRES_USER}://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_USER}:5432/${POSTGRES_DB}
+      PGRST_DB_URI: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
       PGRST_DB_SCHEMA: public
       PGRST_DB_ANON_ROLE: ${POSTGRES_USER} #In production this role should not be the same as the one used for the connection
       PGRST_SERVER_PROXY_URI: "http://127.0.0.1:${API_PORT}"
