@@ -73,12 +73,12 @@ services:
     image: wrouesnel/postgres_exporter
     environment:
       DATA_SOURCE_NAME: "postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?sslmode=disable"
+    depends_on:
+      - postgres
   api:
     image: postgrest/postgrest
     ports:
       - "${API_PORT}:${API_PORT}"
-    links:
-      - postgres:postgres
     environment:
       PGRST_DB_URI: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
       PGRST_DB_SCHEMA: public
@@ -181,8 +181,6 @@ services:
     image: grafana/grafana:latest
     container_name: monitoring_grafana
     restart: unless-stopped
-    links:
-      - prometheus:prometheus
     volumes:
       - grafana-storage:/var/lib/grafana
     environment:
