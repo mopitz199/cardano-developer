@@ -45,6 +45,9 @@ def get_message(last_epoch_number, num_of_block_last_epoch):
         5: f"epoch {last_epoch_number}: Esto no para! ya son {num_of_block_last_epoch} bloques firmados, esto esta on fire!",
         6: f"epoch {last_epoch_number}: No me la creo... ya son {num_of_block_last_epoch} bloques firmados!",
         7: f"epoch {last_epoch_number}: Ya son {num_of_block_last_epoch} firmados!",
+        9: f"epoch {last_epoch_number}: Esto esta que arde, {num_of_block_last_epoch} bloques firmados!",
+        13: f"epoch {last_epoch_number}: Que suerte, {num_of_block_last_epoch} bloques firmados!",
+        33: f"epoch {last_epoch_number}: Este pool debe ser illuminati, {num_of_block_last_epoch} bloques firmados!",
     }
     message = messages_options.get(num_of_block_last_epoch, None)
     if not message:

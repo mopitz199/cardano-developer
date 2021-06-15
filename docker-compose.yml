@@ -69,6 +69,12 @@ services:
       options:
         max-size: "200k"
         max-file: "10"
+  exporter:
+    image: wrouesnel/postgres_exporter
+    environment:
+      DATA_SOURCE_NAME: "${POSTGRES_USER}://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_USER}:5432/${POSTGRES_DB}?sslmode=disable"
+    ports:
+      - "9187:9187"
   api:
     image: postgrest/postgrest
     ports:
