@@ -214,6 +214,16 @@ services:
       - '--path.sysfs=/host/sys'
       - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)'
     restart: unless-stopped
+  swagger:
+    image: swaggerapi/swagger-ui
+    ports:
+      - 9595:8080
+    depends_on:
+      - api
+    environment:
+      SWAGGER_JSON: /spec/swagger.json
+    volumes:
+      - ./swagger.json:/spec/
 secrets:
   postgres_db:
     file: ./secrets/postgres_db

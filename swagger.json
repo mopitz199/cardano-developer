@@ -1,0 +1,5289 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "7.0.1",
+    "title": "Cardano Postgres API",
+    "description": "standard public schema"
+  },
+  "host": "api.cardanosuite.com",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json",
+    "application/vnd.pgrst.object+json",
+    "text/csv"
+  ],
+  "produces": [
+    "application/json",
+    "application/vnd.pgrst.object+json",
+    "text/csv"
+  ],
+  "paths": {
+    "/ada_pots": {
+      "get": {
+        "tags": [
+          "ada_pots"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.ada_pots.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.ada_pots.slot_no"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.ada_pots.epoch_no"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.ada_pots.treasury"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.ada_pots.reserves"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.ada_pots.rewards"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.ada_pots.utxo"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.ada_pots.deposits"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.ada_pots.fees"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.ada_pots.block_id"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/ada_pots"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/block": {
+      "get": {
+        "tags": [
+          "block"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.block.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.block.hash"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.block.epoch_no"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.block.slot_no"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.block.epoch_slot_no"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.block.block_no"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.block.previous_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.block.merkle_root"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.block.slot_leader_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.block.size"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.block.time"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.block.tx_count"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.block.proto_major"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.block.proto_minor"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.block.vrf_key"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.block.op_cert"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/block"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/delegation": {
+      "get": {
+        "tags": [
+          "delegation"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.delegation.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.delegation.addr_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.delegation.cert_index"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.delegation.pool_hash_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.delegation.active_epoch_no"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.delegation.tx_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.delegation.slot_no"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/delegation"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/epoch": {
+      "get": {
+        "tags": [
+          "epoch"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.epoch.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch.out_sum"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch.fees"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch.tx_count"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch.blk_count"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch.no"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch.start_time"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch.end_time"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/epoch"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/epoch_param": {
+      "get": {
+        "tags": [
+          "epoch_param"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.epoch_param.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch_param.epoch_no"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch_param.min_fee_a"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch_param.min_fee_b"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch_param.max_block_size"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch_param.max_tx_size"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch_param.max_bh_size"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch_param.key_deposit"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch_param.pool_deposit"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch_param.max_epoch"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch_param.optimal_pool_count"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch_param.influence"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch_param.monetary_expand_rate"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch_param.treasury_growth_rate"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch_param.decentralisation"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch_param.entropy"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch_param.protocol_major"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch_param.protocol_minor"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch_param.min_utxo_value"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch_param.min_pool_cost"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch_param.nonce"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch_param.block_id"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/epoch_param"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/epoch_stake": {
+      "get": {
+        "tags": [
+          "epoch_stake"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.epoch_stake.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch_stake.addr_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch_stake.pool_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch_stake.amount"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch_stake.epoch_no"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.epoch_stake.block_id"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/epoch_stake"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/ma_tx_mint": {
+      "get": {
+        "tags": [
+          "ma_tx_mint"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.ma_tx_mint.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.ma_tx_mint.policy"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.ma_tx_mint.name"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.ma_tx_mint.quantity"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.ma_tx_mint.tx_id"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/ma_tx_mint"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/ma_tx_out": {
+      "get": {
+        "tags": [
+          "ma_tx_out"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.ma_tx_out.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.ma_tx_out.policy"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.ma_tx_out.name"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.ma_tx_out.quantity"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.ma_tx_out.tx_out_id"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/ma_tx_out"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/meta": {
+      "get": {
+        "tags": [
+          "meta"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.meta.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.meta.start_time"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.meta.network_name"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/meta"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/orphaned_reward": {
+      "get": {
+        "tags": [
+          "orphaned_reward"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.orphaned_reward.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.orphaned_reward.addr_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.orphaned_reward.amount"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.orphaned_reward.epoch_no"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.orphaned_reward.pool_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.orphaned_reward.block_id"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/orphaned_reward"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/param_proposal": {
+      "get": {
+        "tags": [
+          "param_proposal"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.param_proposal.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.param_proposal.epoch_no"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.param_proposal.key"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.param_proposal.min_fee_a"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.param_proposal.min_fee_b"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.param_proposal.max_block_size"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.param_proposal.max_tx_size"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.param_proposal.max_bh_size"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.param_proposal.key_deposit"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.param_proposal.pool_deposit"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.param_proposal.max_epoch"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.param_proposal.optimal_pool_count"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.param_proposal.influence"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.param_proposal.monetary_expand_rate"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.param_proposal.treasury_growth_rate"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.param_proposal.decentralisation"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.param_proposal.entropy"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.param_proposal.protocol_major"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.param_proposal.protocol_minor"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.param_proposal.min_utxo_value"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.param_proposal.min_pool_cost"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.param_proposal.registered_tx_id"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/param_proposal"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/pool_hash": {
+      "get": {
+        "tags": [
+          "pool_hash"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.pool_hash.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.pool_hash.hash_raw"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.pool_hash.view"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/pool_hash"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/pool_meta_data": {
+      "get": {
+        "tags": [
+          "pool_meta_data"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.pool_meta_data.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.pool_meta_data.url"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.pool_meta_data.hash"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.pool_meta_data.registered_tx_id"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/pool_meta_data"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/pool_owner": {
+      "get": {
+        "tags": [
+          "pool_owner"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.pool_owner.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.pool_owner.hash"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.pool_owner.pool_hash_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.pool_owner.registered_tx_id"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/pool_owner"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/pool_relay": {
+      "get": {
+        "tags": [
+          "pool_relay"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.pool_relay.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.pool_relay.update_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.pool_relay.ipv4"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.pool_relay.ipv6"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.pool_relay.dns_name"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.pool_relay.dns_srv_name"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.pool_relay.port"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/pool_relay"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/pool_retire": {
+      "get": {
+        "tags": [
+          "pool_retire"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.pool_retire.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.pool_retire.hash_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.pool_retire.cert_index"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.pool_retire.announced_tx_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.pool_retire.retiring_epoch"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/pool_retire"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/pool_update": {
+      "get": {
+        "tags": [
+          "pool_update"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.pool_update.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.pool_update.hash_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.pool_update.cert_index"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.pool_update.vrf_key_hash"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.pool_update.pledge"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.pool_update.active_epoch_no"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.pool_update.meta_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.pool_update.margin"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.pool_update.fixed_cost"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.pool_update.registered_tx_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.pool_update.reward_addr"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/pool_update"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/reserve": {
+      "get": {
+        "tags": [
+          "reserve"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.reserve.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.reserve.addr_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.reserve.cert_index"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.reserve.amount"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.reserve.tx_id"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/reserve"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/reward": {
+      "get": {
+        "tags": [
+          "reward"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.reward.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.reward.addr_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.reward.amount"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.reward.epoch_no"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.reward.pool_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.reward.block_id"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/reward"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/schema_version": {
+      "get": {
+        "tags": [
+          "schema_version"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.schema_version.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.schema_version.stage_one"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.schema_version.stage_two"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.schema_version.stage_three"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/schema_version"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/slot_leader": {
+      "get": {
+        "tags": [
+          "slot_leader"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.slot_leader.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.slot_leader.hash"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.slot_leader.pool_hash_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.slot_leader.description"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/slot_leader"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/stake_address": {
+      "get": {
+        "tags": [
+          "stake_address"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.stake_address.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.stake_address.hash_raw"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.stake_address.view"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.stake_address.registered_tx_id"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/stake_address"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/stake_deregistration": {
+      "get": {
+        "tags": [
+          "stake_deregistration"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.stake_deregistration.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.stake_deregistration.addr_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.stake_deregistration.cert_index"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.stake_deregistration.tx_id"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/stake_deregistration"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/stake_registration": {
+      "get": {
+        "tags": [
+          "stake_registration"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.stake_registration.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.stake_registration.addr_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.stake_registration.cert_index"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.stake_registration.tx_id"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/stake_registration"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/treasury": {
+      "get": {
+        "tags": [
+          "treasury"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.treasury.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.treasury.addr_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.treasury.cert_index"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.treasury.amount"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.treasury.tx_id"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/treasury"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/tx": {
+      "get": {
+        "tags": [
+          "tx"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.tx.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.tx.hash"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.tx.block_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.tx.block_index"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.tx.out_sum"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.tx.fee"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.tx.deposit"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.tx.size"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.tx.invalid_before"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.tx.invalid_hereafter"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/tx"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/tx_in": {
+      "get": {
+        "tags": [
+          "tx_in"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.tx_in.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.tx_in.tx_in_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.tx_in.tx_out_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.tx_in.tx_out_index"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/tx_in"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/tx_metadata": {
+      "get": {
+        "tags": [
+          "tx_metadata"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.tx_metadata.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.tx_metadata.key"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.tx_metadata.json"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.tx_metadata.tx_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.tx_metadata.bytes"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/tx_metadata"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/tx_out": {
+      "get": {
+        "tags": [
+          "tx_out"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.tx_out.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.tx_out.tx_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.tx_out.index"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.tx_out.address"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.tx_out.address_raw"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.tx_out.payment_cred"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.tx_out.stake_address_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.tx_out.value"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/tx_out"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/utxo_view": {
+      "get": {
+        "tags": [
+          "utxo_view"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.utxo_view.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.utxo_view.tx_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.utxo_view.index"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.utxo_view.address"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.utxo_view.address_raw"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.utxo_view.payment_cred"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.utxo_view.stake_address_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.utxo_view.value"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/utxo_view"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    },
+    "/withdrawal": {
+      "get": {
+        "tags": [
+          "withdrawal"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.withdrawal.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.withdrawal.addr_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.withdrawal.amount"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.withdrawal.tx_id"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/withdrawal"
+              },
+              "type": "array"
+            },
+            "description": "OK"
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ada_pots": {
+      "required": [
+        "id",
+        "slot_no",
+        "epoch_no",
+        "treasury",
+        "reserves",
+        "rewards",
+        "utxo",
+        "deposits",
+        "fees",
+        "block_id"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "slot_no": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "epoch_no": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "treasury": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "reserves": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "rewards": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "utxo": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "deposits": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "fees": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "block_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `block.id`.<fk table='block' column='id'/>"
+        }
+      },
+      "type": "object"
+    },
+    "block": {
+      "required": [
+        "id",
+        "hash",
+        "slot_leader_id",
+        "size",
+        "time",
+        "tx_count",
+        "proto_major",
+        "proto_minor"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "hash": {
+          "format": "bytea",
+          "type": "string"
+        },
+        "epoch_no": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "slot_no": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "epoch_slot_no": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "block_no": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "previous_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `block.id`.<fk table='block' column='id'/>"
+        },
+        "merkle_root": {
+          "format": "bytea",
+          "type": "string"
+        },
+        "slot_leader_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `slot_leader.id`.<fk table='slot_leader' column='id'/>"
+        },
+        "size": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "time": {
+          "format": "timestamp without time zone",
+          "type": "string"
+        },
+        "tx_count": {
+          "format": "bigint",
+          "type": "integer"
+        },
+        "proto_major": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "proto_minor": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "vrf_key": {
+          "format": "character varying",
+          "type": "string"
+        },
+        "op_cert": {
+          "format": "bytea",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "delegation": {
+      "required": [
+        "id",
+        "addr_id",
+        "cert_index",
+        "pool_hash_id",
+        "active_epoch_no",
+        "tx_id",
+        "slot_no"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "addr_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `stake_address.id`.<fk table='stake_address' column='id'/>"
+        },
+        "cert_index": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "pool_hash_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `pool_hash.id`.<fk table='pool_hash' column='id'/>"
+        },
+        "active_epoch_no": {
+          "format": "bigint",
+          "type": "integer"
+        },
+        "tx_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `tx.id`.<fk table='tx' column='id'/>"
+        },
+        "slot_no": {
+          "format": "integer",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "epoch": {
+      "required": [
+        "id",
+        "out_sum",
+        "fees",
+        "tx_count",
+        "blk_count",
+        "no",
+        "start_time",
+        "end_time"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "out_sum": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "fees": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "tx_count": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "blk_count": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "no": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "start_time": {
+          "format": "timestamp without time zone",
+          "type": "string"
+        },
+        "end_time": {
+          "format": "timestamp without time zone",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "epoch_param": {
+      "required": [
+        "id",
+        "epoch_no",
+        "min_fee_a",
+        "min_fee_b",
+        "max_block_size",
+        "max_tx_size",
+        "max_bh_size",
+        "key_deposit",
+        "pool_deposit",
+        "max_epoch",
+        "optimal_pool_count",
+        "influence",
+        "monetary_expand_rate",
+        "treasury_growth_rate",
+        "decentralisation",
+        "protocol_major",
+        "protocol_minor",
+        "min_utxo_value",
+        "min_pool_cost",
+        "block_id"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "epoch_no": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "min_fee_a": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "min_fee_b": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "max_block_size": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "max_tx_size": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "max_bh_size": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "key_deposit": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "pool_deposit": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "max_epoch": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "optimal_pool_count": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "influence": {
+          "format": "double precision",
+          "type": "number"
+        },
+        "monetary_expand_rate": {
+          "format": "double precision",
+          "type": "number"
+        },
+        "treasury_growth_rate": {
+          "format": "double precision",
+          "type": "number"
+        },
+        "decentralisation": {
+          "format": "double precision",
+          "type": "number"
+        },
+        "entropy": {
+          "format": "bytea",
+          "type": "string"
+        },
+        "protocol_major": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "protocol_minor": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "min_utxo_value": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "min_pool_cost": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "nonce": {
+          "format": "bytea",
+          "type": "string"
+        },
+        "block_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `block.id`.<fk table='block' column='id'/>"
+        }
+      },
+      "type": "object"
+    },
+    "epoch_stake": {
+      "required": [
+        "id",
+        "addr_id",
+        "pool_id",
+        "amount",
+        "epoch_no",
+        "block_id"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "addr_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `stake_address.id`.<fk table='stake_address' column='id'/>"
+        },
+        "pool_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `pool_hash.id`.<fk table='pool_hash' column='id'/>"
+        },
+        "amount": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "epoch_no": {
+          "format": "bigint",
+          "type": "integer"
+        },
+        "block_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `block.id`.<fk table='block' column='id'/>"
+        }
+      },
+      "type": "object"
+    },
+    "ma_tx_mint": {
+      "required": [
+        "id",
+        "policy",
+        "name",
+        "quantity",
+        "tx_id"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "policy": {
+          "format": "bytea",
+          "type": "string"
+        },
+        "name": {
+          "format": "bytea",
+          "type": "string"
+        },
+        "quantity": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "tx_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `tx.id`.<fk table='tx' column='id'/>"
+        }
+      },
+      "type": "object"
+    },
+    "ma_tx_out": {
+      "required": [
+        "id",
+        "policy",
+        "name",
+        "quantity",
+        "tx_out_id"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "policy": {
+          "format": "bytea",
+          "type": "string"
+        },
+        "name": {
+          "format": "bytea",
+          "type": "string"
+        },
+        "quantity": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "tx_out_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `tx_out.id`.<fk table='tx_out' column='id'/>"
+        }
+      },
+      "type": "object"
+    },
+    "meta": {
+      "required": [
+        "id",
+        "start_time",
+        "network_name"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "start_time": {
+          "format": "timestamp without time zone",
+          "type": "string"
+        },
+        "network_name": {
+          "format": "character varying",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "orphaned_reward": {
+      "required": [
+        "id",
+        "addr_id",
+        "amount",
+        "epoch_no",
+        "pool_id",
+        "block_id"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "addr_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `stake_address.id`.<fk table='stake_address' column='id'/>"
+        },
+        "amount": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "epoch_no": {
+          "format": "bigint",
+          "type": "integer"
+        },
+        "pool_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `pool_hash.id`.<fk table='pool_hash' column='id'/>"
+        },
+        "block_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `block.id`.<fk table='block' column='id'/>"
+        }
+      },
+      "type": "object"
+    },
+    "param_proposal": {
+      "required": [
+        "id",
+        "epoch_no",
+        "key",
+        "registered_tx_id"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "epoch_no": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "key": {
+          "format": "bytea",
+          "type": "string"
+        },
+        "min_fee_a": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "min_fee_b": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "max_block_size": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "max_tx_size": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "max_bh_size": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "key_deposit": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "pool_deposit": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "max_epoch": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "optimal_pool_count": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "influence": {
+          "format": "double precision",
+          "type": "number"
+        },
+        "monetary_expand_rate": {
+          "format": "double precision",
+          "type": "number"
+        },
+        "treasury_growth_rate": {
+          "format": "double precision",
+          "type": "number"
+        },
+        "decentralisation": {
+          "format": "double precision",
+          "type": "number"
+        },
+        "entropy": {
+          "format": "bytea",
+          "type": "string"
+        },
+        "protocol_major": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "protocol_minor": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "min_utxo_value": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "min_pool_cost": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "registered_tx_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `tx.id`.<fk table='tx' column='id'/>"
+        }
+      },
+      "type": "object"
+    },
+    "pool_hash": {
+      "required": [
+        "id",
+        "hash_raw",
+        "view"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "hash_raw": {
+          "format": "bytea",
+          "type": "string"
+        },
+        "view": {
+          "format": "character varying",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "pool_meta_data": {
+      "required": [
+        "id",
+        "url",
+        "hash",
+        "registered_tx_id"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "url": {
+          "format": "character varying",
+          "type": "string"
+        },
+        "hash": {
+          "format": "bytea",
+          "type": "string"
+        },
+        "registered_tx_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `tx.id`.<fk table='tx' column='id'/>"
+        }
+      },
+      "type": "object"
+    },
+    "pool_owner": {
+      "required": [
+        "id",
+        "hash",
+        "pool_hash_id",
+        "registered_tx_id"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "hash": {
+          "format": "bytea",
+          "type": "string"
+        },
+        "pool_hash_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `pool_hash.id`.<fk table='pool_hash' column='id'/>"
+        },
+        "registered_tx_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `tx.id`.<fk table='tx' column='id'/>"
+        }
+      },
+      "type": "object"
+    },
+    "pool_relay": {
+      "required": [
+        "id",
+        "update_id"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "update_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `pool_update.id`.<fk table='pool_update' column='id'/>"
+        },
+        "ipv4": {
+          "format": "character varying",
+          "type": "string"
+        },
+        "ipv6": {
+          "format": "character varying",
+          "type": "string"
+        },
+        "dns_name": {
+          "format": "character varying",
+          "type": "string"
+        },
+        "dns_srv_name": {
+          "format": "character varying",
+          "type": "string"
+        },
+        "port": {
+          "format": "integer",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "pool_retire": {
+      "required": [
+        "id",
+        "hash_id",
+        "cert_index",
+        "announced_tx_id",
+        "retiring_epoch"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "hash_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `pool_hash.id`.<fk table='pool_hash' column='id'/>"
+        },
+        "cert_index": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "announced_tx_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `tx.id`.<fk table='tx' column='id'/>"
+        },
+        "retiring_epoch": {
+          "format": "integer",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "pool_update": {
+      "required": [
+        "id",
+        "hash_id",
+        "cert_index",
+        "vrf_key_hash",
+        "pledge",
+        "active_epoch_no",
+        "margin",
+        "fixed_cost",
+        "registered_tx_id",
+        "reward_addr"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "hash_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `pool_hash.id`.<fk table='pool_hash' column='id'/>"
+        },
+        "cert_index": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "vrf_key_hash": {
+          "format": "bytea",
+          "type": "string"
+        },
+        "pledge": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "active_epoch_no": {
+          "format": "bigint",
+          "type": "integer"
+        },
+        "meta_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `pool_meta_data.id`.<fk table='pool_meta_data' column='id'/>"
+        },
+        "margin": {
+          "format": "double precision",
+          "type": "number"
+        },
+        "fixed_cost": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "registered_tx_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `tx.id`.<fk table='tx' column='id'/>"
+        },
+        "reward_addr": {
+          "format": "bytea",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "reserve": {
+      "required": [
+        "id",
+        "addr_id",
+        "cert_index",
+        "amount",
+        "tx_id"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "addr_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `stake_address.id`.<fk table='stake_address' column='id'/>"
+        },
+        "cert_index": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "amount": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "tx_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `tx.id`.<fk table='tx' column='id'/>"
+        }
+      },
+      "type": "object"
+    },
+    "reward": {
+      "required": [
+        "id",
+        "addr_id",
+        "amount",
+        "epoch_no",
+        "pool_id",
+        "block_id"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "addr_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `stake_address.id`.<fk table='stake_address' column='id'/>"
+        },
+        "amount": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "epoch_no": {
+          "format": "bigint",
+          "type": "integer"
+        },
+        "pool_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `pool_hash.id`.<fk table='pool_hash' column='id'/>"
+        },
+        "block_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `block.id`.<fk table='block' column='id'/>"
+        }
+      },
+      "type": "object"
+    },
+    "schema_version": {
+      "required": [
+        "id",
+        "stage_one",
+        "stage_two",
+        "stage_three"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "stage_one": {
+          "format": "bigint",
+          "type": "integer"
+        },
+        "stage_two": {
+          "format": "bigint",
+          "type": "integer"
+        },
+        "stage_three": {
+          "format": "bigint",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "slot_leader": {
+      "required": [
+        "id",
+        "hash",
+        "description"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "hash": {
+          "format": "bytea",
+          "type": "string"
+        },
+        "pool_hash_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `pool_hash.id`.<fk table='pool_hash' column='id'/>"
+        },
+        "description": {
+          "format": "character varying",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "stake_address": {
+      "required": [
+        "id",
+        "hash_raw",
+        "view",
+        "registered_tx_id"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "hash_raw": {
+          "format": "bytea",
+          "type": "string"
+        },
+        "view": {
+          "format": "character varying",
+          "type": "string"
+        },
+        "registered_tx_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `tx.id`.<fk table='tx' column='id'/>"
+        }
+      },
+      "type": "object"
+    },
+    "stake_deregistration": {
+      "required": [
+        "id",
+        "addr_id",
+        "cert_index",
+        "tx_id"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "addr_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `stake_address.id`.<fk table='stake_address' column='id'/>"
+        },
+        "cert_index": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "tx_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `tx.id`.<fk table='tx' column='id'/>"
+        }
+      },
+      "type": "object"
+    },
+    "stake_registration": {
+      "required": [
+        "id",
+        "addr_id",
+        "cert_index",
+        "tx_id"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "addr_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `stake_address.id`.<fk table='stake_address' column='id'/>"
+        },
+        "cert_index": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "tx_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `tx.id`.<fk table='tx' column='id'/>"
+        }
+      },
+      "type": "object"
+    },
+    "treasury": {
+      "required": [
+        "id",
+        "addr_id",
+        "cert_index",
+        "amount",
+        "tx_id"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "addr_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `stake_address.id`.<fk table='stake_address' column='id'/>"
+        },
+        "cert_index": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "amount": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "tx_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `tx.id`.<fk table='tx' column='id'/>"
+        }
+      },
+      "type": "object"
+    },
+    "tx": {
+      "required": [
+        "id",
+        "hash",
+        "block_id",
+        "block_index",
+        "out_sum",
+        "fee",
+        "deposit",
+        "size"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "hash": {
+          "format": "bytea",
+          "type": "string"
+        },
+        "block_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `block.id`.<fk table='block' column='id'/>"
+        },
+        "block_index": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "out_sum": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "fee": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "deposit": {
+          "format": "bigint",
+          "type": "integer"
+        },
+        "size": {
+          "format": "integer",
+          "type": "integer"
+        },
+        "invalid_before": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "invalid_hereafter": {
+          "format": "numeric",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "tx_in": {
+      "required": [
+        "id",
+        "tx_in_id",
+        "tx_out_id",
+        "tx_out_index"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "tx_in_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `tx.id`.<fk table='tx' column='id'/>"
+        },
+        "tx_out_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `tx.id`.<fk table='tx' column='id'/>"
+        },
+        "tx_out_index": {
+          "format": "smallint",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "tx_metadata": {
+      "required": [
+        "id",
+        "key",
+        "tx_id",
+        "bytes"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "key": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "json": {
+          "format": "jsonb",
+          "type": "string"
+        },
+        "tx_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `tx.id`.<fk table='tx' column='id'/>"
+        },
+        "bytes": {
+          "format": "bytea",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "tx_out": {
+      "required": [
+        "id",
+        "tx_id",
+        "index",
+        "address",
+        "address_raw",
+        "value"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "tx_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `tx.id`.<fk table='tx' column='id'/>"
+        },
+        "index": {
+          "format": "smallint",
+          "type": "integer"
+        },
+        "address": {
+          "format": "character varying",
+          "type": "string"
+        },
+        "address_raw": {
+          "format": "bytea",
+          "type": "string"
+        },
+        "payment_cred": {
+          "format": "bytea",
+          "type": "string"
+        },
+        "stake_address_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `stake_address.id`.<fk table='stake_address' column='id'/>"
+        },
+        "value": {
+          "format": "numeric",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "utxo_view": {
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "tx_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `tx.id`.<fk table='tx' column='id'/>"
+        },
+        "index": {
+          "format": "smallint",
+          "type": "integer"
+        },
+        "address": {
+          "format": "character varying",
+          "type": "string"
+        },
+        "address_raw": {
+          "format": "bytea",
+          "type": "string"
+        },
+        "payment_cred": {
+          "format": "bytea",
+          "type": "string"
+        },
+        "stake_address_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `stake_address.id`.<fk table='stake_address' column='id'/>"
+        },
+        "value": {
+          "format": "numeric",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "withdrawal": {
+      "required": [
+        "id",
+        "addr_id",
+        "amount",
+        "tx_id"
+      ],
+      "properties": {
+        "id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Primary Key.<pk/>"
+        },
+        "addr_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `stake_address.id`.<fk table='stake_address' column='id'/>"
+        },
+        "amount": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "tx_id": {
+          "format": "bigint",
+          "type": "integer",
+          "description": "Note:\nThis is a Foreign Key to `tx.id`.<fk table='tx' column='id'/>"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "parameters": {
+    "preferParams": {
+      "name": "Prefer",
+      "description": "Preference",
+      "required": false,
+      "in": "header",
+      "type": "string",
+      "enum": [
+        "params=single-object"
+      ]
+    },
+    "preferReturn": {
+      "name": "Prefer",
+      "description": "Preference",
+      "required": false,
+      "in": "header",
+      "type": "string",
+      "enum": [
+        "return=representation",
+        "return=minimal",
+        "return=none"
+      ]
+    },
+    "preferCount": {
+      "name": "Prefer",
+      "description": "Preference",
+      "required": false,
+      "in": "header",
+      "type": "string",
+      "enum": [
+        "count=none"
+      ]
+    },
+    "select": {
+      "name": "select",
+      "description": "Filtering Columns",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "on_conflict": {
+      "name": "on_conflict",
+      "description": "On Conflict",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "order": {
+      "name": "order",
+      "description": "Ordering",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "range": {
+      "name": "Range",
+      "description": "Limiting and Pagination",
+      "required": false,
+      "in": "header",
+      "type": "string"
+    },
+    "rangeUnit": {
+      "name": "Range-Unit",
+      "description": "Limiting and Pagination",
+      "required": false,
+      "default": "items",
+      "in": "header",
+      "type": "string"
+    },
+    "offset": {
+      "name": "offset",
+      "description": "Limiting and Pagination",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "limit": {
+      "name": "limit",
+      "description": "Limiting and Pagination",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "body.ada_pots": {
+      "name": "ada_pots",
+      "description": "ada_pots",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/ada_pots"
+      },
+      "in": "body"
+    },
+    "rowFilter.ada_pots.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.ada_pots.slot_no": {
+      "name": "slot_no",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.ada_pots.epoch_no": {
+      "name": "epoch_no",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.ada_pots.treasury": {
+      "name": "treasury",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.ada_pots.reserves": {
+      "name": "reserves",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.ada_pots.rewards": {
+      "name": "rewards",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.ada_pots.utxo": {
+      "name": "utxo",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.ada_pots.deposits": {
+      "name": "deposits",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.ada_pots.fees": {
+      "name": "fees",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.ada_pots.block_id": {
+      "name": "block_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "body.block": {
+      "name": "block",
+      "description": "block",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/block"
+      },
+      "in": "body"
+    },
+    "rowFilter.block.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.block.hash": {
+      "name": "hash",
+      "required": false,
+      "format": "bytea",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.block.epoch_no": {
+      "name": "epoch_no",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.block.slot_no": {
+      "name": "slot_no",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.block.epoch_slot_no": {
+      "name": "epoch_slot_no",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.block.block_no": {
+      "name": "block_no",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.block.previous_id": {
+      "name": "previous_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.block.merkle_root": {
+      "name": "merkle_root",
+      "required": false,
+      "format": "bytea",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.block.slot_leader_id": {
+      "name": "slot_leader_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.block.size": {
+      "name": "size",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.block.time": {
+      "name": "time",
+      "required": false,
+      "format": "timestamp without time zone",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.block.tx_count": {
+      "name": "tx_count",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.block.proto_major": {
+      "name": "proto_major",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.block.proto_minor": {
+      "name": "proto_minor",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.block.vrf_key": {
+      "name": "vrf_key",
+      "required": false,
+      "format": "character varying",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.block.op_cert": {
+      "name": "op_cert",
+      "required": false,
+      "format": "bytea",
+      "in": "query",
+      "type": "string"
+    },
+    "body.delegation": {
+      "name": "delegation",
+      "description": "delegation",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/delegation"
+      },
+      "in": "body"
+    },
+    "rowFilter.delegation.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.delegation.addr_id": {
+      "name": "addr_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.delegation.cert_index": {
+      "name": "cert_index",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.delegation.pool_hash_id": {
+      "name": "pool_hash_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.delegation.active_epoch_no": {
+      "name": "active_epoch_no",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.delegation.tx_id": {
+      "name": "tx_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.delegation.slot_no": {
+      "name": "slot_no",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "body.epoch": {
+      "name": "epoch",
+      "description": "epoch",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/epoch"
+      },
+      "in": "body"
+    },
+    "rowFilter.epoch.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch.out_sum": {
+      "name": "out_sum",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch.fees": {
+      "name": "fees",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch.tx_count": {
+      "name": "tx_count",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch.blk_count": {
+      "name": "blk_count",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch.no": {
+      "name": "no",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch.start_time": {
+      "name": "start_time",
+      "required": false,
+      "format": "timestamp without time zone",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch.end_time": {
+      "name": "end_time",
+      "required": false,
+      "format": "timestamp without time zone",
+      "in": "query",
+      "type": "string"
+    },
+    "body.epoch_param": {
+      "name": "epoch_param",
+      "description": "epoch_param",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/epoch_param"
+      },
+      "in": "body"
+    },
+    "rowFilter.epoch_param.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch_param.epoch_no": {
+      "name": "epoch_no",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch_param.min_fee_a": {
+      "name": "min_fee_a",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch_param.min_fee_b": {
+      "name": "min_fee_b",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch_param.max_block_size": {
+      "name": "max_block_size",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch_param.max_tx_size": {
+      "name": "max_tx_size",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch_param.max_bh_size": {
+      "name": "max_bh_size",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch_param.key_deposit": {
+      "name": "key_deposit",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch_param.pool_deposit": {
+      "name": "pool_deposit",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch_param.max_epoch": {
+      "name": "max_epoch",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch_param.optimal_pool_count": {
+      "name": "optimal_pool_count",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch_param.influence": {
+      "name": "influence",
+      "required": false,
+      "format": "double precision",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch_param.monetary_expand_rate": {
+      "name": "monetary_expand_rate",
+      "required": false,
+      "format": "double precision",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch_param.treasury_growth_rate": {
+      "name": "treasury_growth_rate",
+      "required": false,
+      "format": "double precision",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch_param.decentralisation": {
+      "name": "decentralisation",
+      "required": false,
+      "format": "double precision",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch_param.entropy": {
+      "name": "entropy",
+      "required": false,
+      "format": "bytea",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch_param.protocol_major": {
+      "name": "protocol_major",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch_param.protocol_minor": {
+      "name": "protocol_minor",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch_param.min_utxo_value": {
+      "name": "min_utxo_value",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch_param.min_pool_cost": {
+      "name": "min_pool_cost",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch_param.nonce": {
+      "name": "nonce",
+      "required": false,
+      "format": "bytea",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch_param.block_id": {
+      "name": "block_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "body.epoch_stake": {
+      "name": "epoch_stake",
+      "description": "epoch_stake",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/epoch_stake"
+      },
+      "in": "body"
+    },
+    "rowFilter.epoch_stake.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch_stake.addr_id": {
+      "name": "addr_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch_stake.pool_id": {
+      "name": "pool_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch_stake.amount": {
+      "name": "amount",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch_stake.epoch_no": {
+      "name": "epoch_no",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.epoch_stake.block_id": {
+      "name": "block_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "body.ma_tx_mint": {
+      "name": "ma_tx_mint",
+      "description": "ma_tx_mint",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/ma_tx_mint"
+      },
+      "in": "body"
+    },
+    "rowFilter.ma_tx_mint.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.ma_tx_mint.policy": {
+      "name": "policy",
+      "required": false,
+      "format": "bytea",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.ma_tx_mint.name": {
+      "name": "name",
+      "required": false,
+      "format": "bytea",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.ma_tx_mint.quantity": {
+      "name": "quantity",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.ma_tx_mint.tx_id": {
+      "name": "tx_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "body.ma_tx_out": {
+      "name": "ma_tx_out",
+      "description": "ma_tx_out",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/ma_tx_out"
+      },
+      "in": "body"
+    },
+    "rowFilter.ma_tx_out.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.ma_tx_out.policy": {
+      "name": "policy",
+      "required": false,
+      "format": "bytea",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.ma_tx_out.name": {
+      "name": "name",
+      "required": false,
+      "format": "bytea",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.ma_tx_out.quantity": {
+      "name": "quantity",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.ma_tx_out.tx_out_id": {
+      "name": "tx_out_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "body.meta": {
+      "name": "meta",
+      "description": "meta",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/meta"
+      },
+      "in": "body"
+    },
+    "rowFilter.meta.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.meta.start_time": {
+      "name": "start_time",
+      "required": false,
+      "format": "timestamp without time zone",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.meta.network_name": {
+      "name": "network_name",
+      "required": false,
+      "format": "character varying",
+      "in": "query",
+      "type": "string"
+    },
+    "body.orphaned_reward": {
+      "name": "orphaned_reward",
+      "description": "orphaned_reward",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/orphaned_reward"
+      },
+      "in": "body"
+    },
+    "rowFilter.orphaned_reward.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.orphaned_reward.addr_id": {
+      "name": "addr_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.orphaned_reward.amount": {
+      "name": "amount",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.orphaned_reward.epoch_no": {
+      "name": "epoch_no",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.orphaned_reward.pool_id": {
+      "name": "pool_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.orphaned_reward.block_id": {
+      "name": "block_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "body.param_proposal": {
+      "name": "param_proposal",
+      "description": "param_proposal",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/param_proposal"
+      },
+      "in": "body"
+    },
+    "rowFilter.param_proposal.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.param_proposal.epoch_no": {
+      "name": "epoch_no",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.param_proposal.key": {
+      "name": "key",
+      "required": false,
+      "format": "bytea",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.param_proposal.min_fee_a": {
+      "name": "min_fee_a",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.param_proposal.min_fee_b": {
+      "name": "min_fee_b",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.param_proposal.max_block_size": {
+      "name": "max_block_size",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.param_proposal.max_tx_size": {
+      "name": "max_tx_size",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.param_proposal.max_bh_size": {
+      "name": "max_bh_size",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.param_proposal.key_deposit": {
+      "name": "key_deposit",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.param_proposal.pool_deposit": {
+      "name": "pool_deposit",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.param_proposal.max_epoch": {
+      "name": "max_epoch",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.param_proposal.optimal_pool_count": {
+      "name": "optimal_pool_count",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.param_proposal.influence": {
+      "name": "influence",
+      "required": false,
+      "format": "double precision",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.param_proposal.monetary_expand_rate": {
+      "name": "monetary_expand_rate",
+      "required": false,
+      "format": "double precision",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.param_proposal.treasury_growth_rate": {
+      "name": "treasury_growth_rate",
+      "required": false,
+      "format": "double precision",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.param_proposal.decentralisation": {
+      "name": "decentralisation",
+      "required": false,
+      "format": "double precision",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.param_proposal.entropy": {
+      "name": "entropy",
+      "required": false,
+      "format": "bytea",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.param_proposal.protocol_major": {
+      "name": "protocol_major",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.param_proposal.protocol_minor": {
+      "name": "protocol_minor",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.param_proposal.min_utxo_value": {
+      "name": "min_utxo_value",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.param_proposal.min_pool_cost": {
+      "name": "min_pool_cost",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.param_proposal.registered_tx_id": {
+      "name": "registered_tx_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "body.pool_hash": {
+      "name": "pool_hash",
+      "description": "pool_hash",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/pool_hash"
+      },
+      "in": "body"
+    },
+    "rowFilter.pool_hash.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.pool_hash.hash_raw": {
+      "name": "hash_raw",
+      "required": false,
+      "format": "bytea",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.pool_hash.view": {
+      "name": "view",
+      "required": false,
+      "format": "character varying",
+      "in": "query",
+      "type": "string"
+    },
+    "body.pool_meta_data": {
+      "name": "pool_meta_data",
+      "description": "pool_meta_data",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/pool_meta_data"
+      },
+      "in": "body"
+    },
+    "rowFilter.pool_meta_data.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.pool_meta_data.url": {
+      "name": "url",
+      "required": false,
+      "format": "character varying",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.pool_meta_data.hash": {
+      "name": "hash",
+      "required": false,
+      "format": "bytea",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.pool_meta_data.registered_tx_id": {
+      "name": "registered_tx_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "body.pool_owner": {
+      "name": "pool_owner",
+      "description": "pool_owner",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/pool_owner"
+      },
+      "in": "body"
+    },
+    "rowFilter.pool_owner.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.pool_owner.hash": {
+      "name": "hash",
+      "required": false,
+      "format": "bytea",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.pool_owner.pool_hash_id": {
+      "name": "pool_hash_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.pool_owner.registered_tx_id": {
+      "name": "registered_tx_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "body.pool_relay": {
+      "name": "pool_relay",
+      "description": "pool_relay",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/pool_relay"
+      },
+      "in": "body"
+    },
+    "rowFilter.pool_relay.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.pool_relay.update_id": {
+      "name": "update_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.pool_relay.ipv4": {
+      "name": "ipv4",
+      "required": false,
+      "format": "character varying",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.pool_relay.ipv6": {
+      "name": "ipv6",
+      "required": false,
+      "format": "character varying",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.pool_relay.dns_name": {
+      "name": "dns_name",
+      "required": false,
+      "format": "character varying",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.pool_relay.dns_srv_name": {
+      "name": "dns_srv_name",
+      "required": false,
+      "format": "character varying",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.pool_relay.port": {
+      "name": "port",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "body.pool_retire": {
+      "name": "pool_retire",
+      "description": "pool_retire",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/pool_retire"
+      },
+      "in": "body"
+    },
+    "rowFilter.pool_retire.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.pool_retire.hash_id": {
+      "name": "hash_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.pool_retire.cert_index": {
+      "name": "cert_index",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.pool_retire.announced_tx_id": {
+      "name": "announced_tx_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.pool_retire.retiring_epoch": {
+      "name": "retiring_epoch",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "body.pool_update": {
+      "name": "pool_update",
+      "description": "pool_update",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/pool_update"
+      },
+      "in": "body"
+    },
+    "rowFilter.pool_update.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.pool_update.hash_id": {
+      "name": "hash_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.pool_update.cert_index": {
+      "name": "cert_index",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.pool_update.vrf_key_hash": {
+      "name": "vrf_key_hash",
+      "required": false,
+      "format": "bytea",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.pool_update.pledge": {
+      "name": "pledge",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.pool_update.active_epoch_no": {
+      "name": "active_epoch_no",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.pool_update.meta_id": {
+      "name": "meta_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.pool_update.margin": {
+      "name": "margin",
+      "required": false,
+      "format": "double precision",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.pool_update.fixed_cost": {
+      "name": "fixed_cost",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.pool_update.registered_tx_id": {
+      "name": "registered_tx_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.pool_update.reward_addr": {
+      "name": "reward_addr",
+      "required": false,
+      "format": "bytea",
+      "in": "query",
+      "type": "string"
+    },
+    "body.reserve": {
+      "name": "reserve",
+      "description": "reserve",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/reserve"
+      },
+      "in": "body"
+    },
+    "rowFilter.reserve.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.reserve.addr_id": {
+      "name": "addr_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.reserve.cert_index": {
+      "name": "cert_index",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.reserve.amount": {
+      "name": "amount",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.reserve.tx_id": {
+      "name": "tx_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "body.reward": {
+      "name": "reward",
+      "description": "reward",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/reward"
+      },
+      "in": "body"
+    },
+    "rowFilter.reward.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.reward.addr_id": {
+      "name": "addr_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.reward.amount": {
+      "name": "amount",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.reward.epoch_no": {
+      "name": "epoch_no",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.reward.pool_id": {
+      "name": "pool_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.reward.block_id": {
+      "name": "block_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "body.schema_version": {
+      "name": "schema_version",
+      "description": "schema_version",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/schema_version"
+      },
+      "in": "body"
+    },
+    "rowFilter.schema_version.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.schema_version.stage_one": {
+      "name": "stage_one",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.schema_version.stage_two": {
+      "name": "stage_two",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.schema_version.stage_three": {
+      "name": "stage_three",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "body.slot_leader": {
+      "name": "slot_leader",
+      "description": "slot_leader",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/slot_leader"
+      },
+      "in": "body"
+    },
+    "rowFilter.slot_leader.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.slot_leader.hash": {
+      "name": "hash",
+      "required": false,
+      "format": "bytea",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.slot_leader.pool_hash_id": {
+      "name": "pool_hash_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.slot_leader.description": {
+      "name": "description",
+      "required": false,
+      "format": "character varying",
+      "in": "query",
+      "type": "string"
+    },
+    "body.stake_address": {
+      "name": "stake_address",
+      "description": "stake_address",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/stake_address"
+      },
+      "in": "body"
+    },
+    "rowFilter.stake_address.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.stake_address.hash_raw": {
+      "name": "hash_raw",
+      "required": false,
+      "format": "bytea",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.stake_address.view": {
+      "name": "view",
+      "required": false,
+      "format": "character varying",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.stake_address.registered_tx_id": {
+      "name": "registered_tx_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "body.stake_deregistration": {
+      "name": "stake_deregistration",
+      "description": "stake_deregistration",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/stake_deregistration"
+      },
+      "in": "body"
+    },
+    "rowFilter.stake_deregistration.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.stake_deregistration.addr_id": {
+      "name": "addr_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.stake_deregistration.cert_index": {
+      "name": "cert_index",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.stake_deregistration.tx_id": {
+      "name": "tx_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "body.stake_registration": {
+      "name": "stake_registration",
+      "description": "stake_registration",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/stake_registration"
+      },
+      "in": "body"
+    },
+    "rowFilter.stake_registration.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.stake_registration.addr_id": {
+      "name": "addr_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.stake_registration.cert_index": {
+      "name": "cert_index",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.stake_registration.tx_id": {
+      "name": "tx_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "body.treasury": {
+      "name": "treasury",
+      "description": "treasury",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/treasury"
+      },
+      "in": "body"
+    },
+    "rowFilter.treasury.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.treasury.addr_id": {
+      "name": "addr_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.treasury.cert_index": {
+      "name": "cert_index",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.treasury.amount": {
+      "name": "amount",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.treasury.tx_id": {
+      "name": "tx_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "body.tx": {
+      "name": "tx",
+      "description": "tx",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/tx"
+      },
+      "in": "body"
+    },
+    "rowFilter.tx.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.tx.hash": {
+      "name": "hash",
+      "required": false,
+      "format": "bytea",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.tx.block_id": {
+      "name": "block_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.tx.block_index": {
+      "name": "block_index",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.tx.out_sum": {
+      "name": "out_sum",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.tx.fee": {
+      "name": "fee",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.tx.deposit": {
+      "name": "deposit",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.tx.size": {
+      "name": "size",
+      "required": false,
+      "format": "integer",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.tx.invalid_before": {
+      "name": "invalid_before",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.tx.invalid_hereafter": {
+      "name": "invalid_hereafter",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "body.tx_in": {
+      "name": "tx_in",
+      "description": "tx_in",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/tx_in"
+      },
+      "in": "body"
+    },
+    "rowFilter.tx_in.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.tx_in.tx_in_id": {
+      "name": "tx_in_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.tx_in.tx_out_id": {
+      "name": "tx_out_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.tx_in.tx_out_index": {
+      "name": "tx_out_index",
+      "required": false,
+      "format": "smallint",
+      "in": "query",
+      "type": "string"
+    },
+    "body.tx_metadata": {
+      "name": "tx_metadata",
+      "description": "tx_metadata",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/tx_metadata"
+      },
+      "in": "body"
+    },
+    "rowFilter.tx_metadata.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.tx_metadata.key": {
+      "name": "key",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.tx_metadata.json": {
+      "name": "json",
+      "required": false,
+      "format": "jsonb",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.tx_metadata.tx_id": {
+      "name": "tx_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.tx_metadata.bytes": {
+      "name": "bytes",
+      "required": false,
+      "format": "bytea",
+      "in": "query",
+      "type": "string"
+    },
+    "body.tx_out": {
+      "name": "tx_out",
+      "description": "tx_out",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/tx_out"
+      },
+      "in": "body"
+    },
+    "rowFilter.tx_out.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.tx_out.tx_id": {
+      "name": "tx_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.tx_out.index": {
+      "name": "index",
+      "required": false,
+      "format": "smallint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.tx_out.address": {
+      "name": "address",
+      "required": false,
+      "format": "character varying",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.tx_out.address_raw": {
+      "name": "address_raw",
+      "required": false,
+      "format": "bytea",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.tx_out.payment_cred": {
+      "name": "payment_cred",
+      "required": false,
+      "format": "bytea",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.tx_out.stake_address_id": {
+      "name": "stake_address_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.tx_out.value": {
+      "name": "value",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "body.utxo_view": {
+      "name": "utxo_view",
+      "description": "utxo_view",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/utxo_view"
+      },
+      "in": "body"
+    },
+    "rowFilter.utxo_view.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.utxo_view.tx_id": {
+      "name": "tx_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.utxo_view.index": {
+      "name": "index",
+      "required": false,
+      "format": "smallint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.utxo_view.address": {
+      "name": "address",
+      "required": false,
+      "format": "character varying",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.utxo_view.address_raw": {
+      "name": "address_raw",
+      "required": false,
+      "format": "bytea",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.utxo_view.payment_cred": {
+      "name": "payment_cred",
+      "required": false,
+      "format": "bytea",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.utxo_view.stake_address_id": {
+      "name": "stake_address_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.utxo_view.value": {
+      "name": "value",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "body.withdrawal": {
+      "name": "withdrawal",
+      "description": "withdrawal",
+      "required": false,
+      "schema": {
+        "$ref": "#/definitions/withdrawal"
+      },
+      "in": "body"
+    },
+    "rowFilter.withdrawal.id": {
+      "name": "id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.withdrawal.addr_id": {
+      "name": "addr_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.withdrawal.amount": {
+      "name": "amount",
+      "required": false,
+      "format": "numeric",
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.withdrawal.tx_id": {
+      "name": "tx_id",
+      "required": false,
+      "format": "bigint",
+      "in": "query",
+      "type": "string"
+    }
+  },
+  "externalDocs": {
+    "url": "https://postgrest.org/en/v7.0/api.html",
+    "description": "PostgREST Documentation"
+  }
+}
