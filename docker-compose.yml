@@ -223,7 +223,7 @@ services:
     environment:
       SWAGGER_JSON: /spec/swagger.json
     volumes:
-      - ./swagger.json:/spec/
+      - ./swagger.json:/spec/swagger.json
 secrets:
   postgres_db:
     file: ./secrets/postgres_db
