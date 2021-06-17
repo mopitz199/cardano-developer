@@ -216,14 +216,23 @@ services:
     restart: unless-stopped
   swagger:
     image: swaggerapi/swagger-ui
-    ports:
-      - 9595:8080
     depends_on:
       - api
     environment:
       SWAGGER_JSON: /spec/swagger.json
     volumes:
       - ./swagger.json:/spec/swagger.json
+    labels:
+      #### Labels define the behavior and rules of the traefik proxy for this container ####
+      - "traefik.enable=true" # <== Enable traefik to proxy this container
+
+      - "traefik.http.routers.server-router.rule=Host(`api.${DOMAIN}/docs`)" # <== Your Domain Name goes here for the http rule
+      - "traefik.http.routers.server-router.entrypoints=server-entrypoint" # <== Defining the entrypoint for http, **ref: line 30
+      - "traefik.http.routers.server-router.middlewares=redirect@file" # <== This is a middleware to redirect to https
+
+      - "traefik.http.routers.server-secured-router.entrypoints=server-secured-entrypoint" # <== Defining entrypoint for https
+      - "traefik.http.routers.server-secured-router.rule=Host(`api.${DOMAIN}/docs`)" # <== Your Domain Name for the https rule 
+      - "traefik.http.routers.server-secured-router.tls.certresolver=tls-certificate-resolver" # <== Defining certsresolvers for https
 secrets:
   postgres_db:
     file: ./secrets/postgres_db
