@@ -216,8 +216,6 @@ services:
     restart: unless-stopped
   swagger:
     image: swaggerapi/swagger-ui
-    ports:
-      - "8082:8080"
     environment:
       SWAGGER_JSON: /spec/swagger.json
     volumes:
@@ -226,7 +224,7 @@ services:
       #### Labels define the behavior and rules of the traefik proxy for this container ####
       - "traefik.enable=true" # <== Enable traefik to proxy this container
 
-      - "traefik.http.services.my-service.loadbalancer.server.port=80"
+      - "traefik.http.services.my-service.loadbalancer.server.port=8080"
 
       - "traefik.http.routers.docs-router.rule=Host(`api.${DOMAIN}`) && Path(`/docs`)" # <== Your Domain Name goes here for the http rule
       - "traefik.http.routers.docs-router.entrypoints=server-entrypoint" # <== Defining the entrypoint for http, **ref: line 30
