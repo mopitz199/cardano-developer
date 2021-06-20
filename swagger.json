@@ -10,6 +10,16 @@
   "schemes": [
     "https"
   ],
+  "securityDefinitions": {
+    "basic_auth": {
+        "type": "basic"
+    }
+  },
+  "security": [
+      {
+          "basic_auth": []
+      }
+  ],
   "consumes": [
     "application/json",
     "application/vnd.pgrst.object+json",
