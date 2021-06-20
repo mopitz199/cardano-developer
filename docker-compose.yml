@@ -230,7 +230,11 @@ services:
 
       - "traefik.http.routers.docs-secured-router.entrypoints=server-secured-entrypoint" # <== Defining entrypoint for https
       - "traefik.http.routers.docs-secured-router.rule=Host(`docs.${DOMAIN}`)" # <== Your Domain Name for the https rule 
-      - "traefik.http.routers.docs-secured-router.tls.certresolver=tls-certificate-resolver" # <== Defining certsresolvers for https
+      - "traefik.http.routers.docs-secured-router.tls.certresolver=tls-certificate-resolver" # <== Defining certsresolvers for https      
+
+      - "traefik.http.services.my-service.loadbalancer.server.port=8080"
+      - "traefik.http.routers.docs-secured-router.service=my-service"
+      - "traefik.http.routers.docs-router.service=my-service"
 secrets:
   postgres_db:
     file: ./secrets/postgres_db
