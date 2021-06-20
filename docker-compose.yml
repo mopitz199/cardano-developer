@@ -226,12 +226,12 @@ services:
       #### Labels define the behavior and rules of the traefik proxy for this container ####
       - "traefik.enable=true" # <== Enable traefik to proxy this container
 
-      - "traefik.http.routers.docs-router.rule=Host(`api.${DOMAIN}`) && Path(`/docs`)" # <== Your Domain Name goes here for the http rule
+      - "traefik.http.routers.docs-router.rule=\"Host(`api.${DOMAIN}`) && Path(`/docs`)\"" # <== Your Domain Name goes here for the http rule
       - "traefik.http.routers.docs-router.entrypoints=server-entrypoint" # <== Defining the entrypoint for http, **ref: line 30
       - "traefik.http.routers.docs-router.middlewares=redirect@file" # <== This is a middleware to redirect to https
 
       - "traefik.http.routers.docs-secured-router.entrypoints=server-secured-entrypoint" # <== Defining entrypoint for https
-      - "traefik.http.routers.docs-secured-router.rule=Host(`api.${DOMAIN}`) && Path(`/docs`)" # <== Your Domain Name for the https rule 
+      - "traefik.http.routers.docs-secured-router.rule=\"Host(`api.${DOMAIN}`) && Path(`/docs`)\"" # <== Your Domain Name for the https rule 
       - "traefik.http.routers.docs-secured-router.tls.certresolver=tls-certificate-resolver" # <== Defining certsresolvers for https      
 secrets:
   postgres_db:
