@@ -12,13 +12,13 @@
   ],
   "securityDefinitions": {
     "basic_auth": {
-        "type": "basic"
+      "type": "basic"
     }
   },
   "security": [
-      {
-          "basic_auth": []
-      }
+    {
+      "basic_auth": []
+    }
   ],
   "consumes": [
     "application/json",
