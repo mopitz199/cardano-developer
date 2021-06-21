@@ -99,6 +99,7 @@ services:
       - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolallowcredentials=true"
       - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolalloworiginlist=https://docs.cardanosuite.com,http://docs.cardanosuite.com"
       - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolmaxage=100"
+      - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolallowheaders=*"
       - "traefik.http.middlewares.server-secured-middleware-cors.headers.addvaryheader=true"
 
       - "traefik.http.middlewares.server-secured-middleware.basicauth.users=${API_ADMIN_PASSWORD}"
