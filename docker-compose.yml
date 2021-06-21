@@ -90,11 +90,6 @@ services:
       #### Labels define the behavior and rules of the traefik proxy for this container ####
       - "traefik.enable=true" # <== Enable traefik to proxy this container
 
-      - "traefik.http.routers.server-router.rule=Host(`api.${DOMAIN}`)" # <== Your Domain Name goes here for the http rule
-      - "traefik.http.routers.server-router.entrypoints=server-entrypoint" # <== Defining the entrypoint for http, **ref: line 30
-      - "traefik.http.routers.server-router.middlewares=redirect@file" # <== This is a middleware to redirect to https
-
-      # - "traefik.http.middlewares.server-secured-middleware.headers.accesscontrolalloworiginlist=*"
       - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolallowmethods=OPTION,GET,POST,PUT,PATCH"
       - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolallowcredentials=true"
       - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolalloworiginlist=https://docs.cardanosuite.com,http://docs.cardanosuite.com"
@@ -102,13 +97,17 @@ services:
       - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolallowheaders=*"
       - "traefik.http.middlewares.server-secured-middleware-cors.headers.addvaryheader=true"
 
+      - "traefik.http.routers.server-router.rule=Host(`api.${DOMAIN}`)" # <== Your Domain Name goes here for the http rule
+      - "traefik.http.routers.server-router.entrypoints=server-entrypoint" # <== Defining the entrypoint for http, **ref: line 30
+      - "traefik.http.routers.server-router.middlewares=server-secured-middleware-cors,redirect@file" # <== This is a middleware to redirect to https
+
       - "traefik.http.middlewares.server-secured-middleware.basicauth.users=${API_ADMIN_PASSWORD}"
 
-      - "traefik.http.routers.server-secured-router.middlewares=server-secured-middleware,server-secured-middleware-cors"
+      - "traefik.http.routers.server-secured-router.middlewares=server-secured-middleware"
 
-      - "traefik.http.routers.server-router.entrypoints=server-secured-entrypoint" # <== Defining entrypoint for https
-      - "traefik.http.routers.server-router.rule=Host(`api.${DOMAIN}`)" # <== Your Domain Name for the https rule 
-      - "traefik.http.routers.server-router.tls.certresolver=tls-certificate-resolver" # <== Defining certsresolvers for https
+      - "traefik.http.routers.server-secured-router.entrypoints=server-secured-entrypoint" # <== Defining entrypoint for https
+      - "traefik.http.routers.server-secured-router.rule=Host(`api.${DOMAIN}`)" # <== Your Domain Name for the https rule 
+      - "traefik.http.routers.server-secured-router.tls.certresolver=tls-certificate-resolver" # <== Defining certsresolvers for https
   cardano-node:
     image: inputoutput/cardano-node:${CARDANO_NODE_VERSION:-1.26.2}
     command: [
