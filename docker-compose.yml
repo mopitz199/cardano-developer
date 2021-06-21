@@ -227,6 +227,7 @@ services:
       SWAGGER_JSON: /spec/swagger.json
     volumes:
       - ./swagger.json:/spec/swagger.json
+      - ./cors.conf:/cors.conf
     labels:
       #### Labels define the behavior and rules of the traefik proxy for this container ####
       - "traefik.enable=true" # <== Enable traefik to proxy this container
