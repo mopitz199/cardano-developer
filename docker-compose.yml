@@ -100,10 +100,7 @@ services:
       - "traefik.http.routers.server-secured-router.rule=Host(`api.${DOMAIN}`)" # <== Your Domain Name for the https rule 
       - "traefik.http.routers.server-secured-router.tls.certresolver=tls-certificate-resolver" # <== Defining certsresolvers for https
 
-      - "traefik.http.middlewares.testheader.headers.accesscontrolallowmethods=GET,OPTIONS,PUT"
-      - "traefik.http.middlewares.testheader.headers.accesscontrolalloworiginlist=https://docs.cardanosuite.com,http://docs.cardanosuite.com"
-      - "traefik.http.middlewares.testheader.headers.accesscontrolmaxage=100"
-      - "traefik.http.middlewares.testheader.headers.addvaryheader=true"
+      - "traefik.frontend.headers.customResponseHeaders=Access-Control-Allow-Origin:*"
   cardano-node:
     image: inputoutput/cardano-node:${CARDANO_NODE_VERSION:-1.26.2}
     command: [
