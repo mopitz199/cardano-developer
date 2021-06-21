@@ -93,7 +93,7 @@ services:
       # - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolallowmethods=OPTION,GET,POST,PUT,PATCH"
       # - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolallowcredentials=true"
       - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolalloworiginlist=*"
-      # - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolallowheaders=*"
+      - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolallowheaders=*"
 
       - "traefik.http.routers.server-router.rule=Host(`api.${DOMAIN}`)" # <== Your Domain Name goes here for the http rule
       - "traefik.http.routers.server-router.entrypoints=server-entrypoint" # <== Defining the entrypoint for http, **ref: line 30
