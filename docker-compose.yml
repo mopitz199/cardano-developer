@@ -95,8 +95,9 @@ services:
       - "traefik.http.routers.server-router.middlewares=redirect@file" # <== This is a middleware to redirect to https
 
       # - "traefik.http.middlewares.server-secured-middleware.headers.accesscontrolalloworiginlist=*"
-      - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolallowmethods=GET,OPTIONS,PUT"
-      - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolalloworiginlist=https://docs.cardanosuite.com"
+      - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolallowmethods=*"
+      - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolallowcredentials=true"
+      - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolalloworiginlist=https://docs.cardanosuite.com,http://docs.cardanosuite.com"
       - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolmaxage=100"
       - "traefik.http.middlewares.server-secured-middleware-cors.headers.addvaryheader=true"
 
