@@ -90,7 +90,7 @@ services:
       #### Labels define the behavior and rules of the traefik proxy for this container ####
       - "traefik.enable=true" # <== Enable traefik to proxy this container
 
-      - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolalloworiginlist=[https://docs.${DOMAIN}]"
+      - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolalloworiginlist=https://docs.${DOMAIN}"
       - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolallowheaders=*"
 
       - "traefik.http.routers.server-router.rule=Host(`api.${DOMAIN}`)" # <== Your Domain Name goes here for the http rule
