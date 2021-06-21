@@ -47,6 +47,7 @@ services:
       - "traefik.enable=true" # <== Enable traefik on itself to view dashboard and assign subdomain to view it
       - "traefik.http.routers.api.rule=Host(`${DOMAIN}/dashboard`)" # <== Setting the domain for the dashboard
       - "traefik.http.routers.api.service=api@internal" # <== Enabling the api to be a service to access
+      - "traefik.frontend.headers.customResponseHeaders=Access-Control-Allow-Origin:*"
   postgres:
     image: postgres:${POSTGRES_VERSION}
     environment:
@@ -99,8 +100,6 @@ services:
       - "traefik.http.routers.server-secured-router.entrypoints=server-secured-entrypoint" # <== Defining entrypoint for https
       - "traefik.http.routers.server-secured-router.rule=Host(`api.${DOMAIN}`)" # <== Your Domain Name for the https rule 
       - "traefik.http.routers.server-secured-router.tls.certresolver=tls-certificate-resolver" # <== Defining certsresolvers for https
-
-      - "traefik.frontend.headers.customResponseHeaders=Access-Control-Allow-Origin:*"
   cardano-node:
     image: inputoutput/cardano-node:${CARDANO_NODE_VERSION:-1.26.2}
     command: [
