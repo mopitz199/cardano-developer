@@ -102,7 +102,6 @@ services:
 
       - "traefik.http.middlewares.viewsheaders.headers.accesscontrolalloworiginlist=*"
       - "traefik.http.server-secured-router.service.middlewares=viewsheaders"
-      - "traefik.http.routers.server.service.middlewares=viewsheaders"
   cardano-node:
     image: inputoutput/cardano-node:${CARDANO_NODE_VERSION:-1.26.2}
     command: [
