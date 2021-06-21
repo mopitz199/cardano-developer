@@ -94,7 +94,6 @@ services:
       - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolallowcredentials=true"
       - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolalloworiginlist=*"
       - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolallowheaders=*"
-      - "traefik.http.middlewares.server-secured-middleware-cors.headers.sslredirect=true"
       - "traefik.http.middlewares.server-secured-middleware-cors.headers.allowedhosts=docs.${DOMAIN}"
 
       - "traefik.http.routers.server-router.rule=Host(`api.${DOMAIN}`)" # <== Your Domain Name goes here for the http rule
