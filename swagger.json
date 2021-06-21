@@ -8,7 +8,7 @@
   "host": "api.cardanosuite.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "securityDefinitions": {
     "basic_auth": {
