@@ -97,7 +97,7 @@ services:
       - "traefik.http.routers.server-secured-router.middlewares=server-secured-middleware"
       # - "traefik.http.middlewares.server-secured-middleware.headers.accesscontrolalloworiginlist=*"
       - "traefik.http.middlewares.server-secured-middleware.headers.accesscontrolallowmethods=GET,OPTIONS,PUT"
-      - "traefik.http.middlewares.server-secured-middleware.headers.accesscontrolalloworiginlist=https://docs.cardanosuite.com,http://docs.cardanosuite.com"
+      - "traefik.http.middlewares.server-secured-middleware.headers.accesscontrolalloworiginlist=https://docs.cardanosuite.com"
       - "traefik.http.middlewares.server-secured-middleware.headers.accesscontrolmaxage=100"
       - "traefik.http.middlewares.server-secured-middleware.headers.addvaryheader=true"
       - "traefik.http.middlewares.server-secured-middleware.basicauth.users=${API_ADMIN_PASSWORD}"
