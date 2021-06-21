@@ -49,7 +49,7 @@ services:
       - "traefik.http.routers.api.service=api@internal" # <== Enabling the api to be a service to access
 
       - "traefik.http.middlewares.testheader.headers.accesscontrolallowmethods=GET,OPTIONS,PUT"
-      - "traefik.http.middlewares.testheader.headers.accesscontrolalloworiginlist=https://api.cardanosuite.com,http://api.cardanosuite.com"
+      - "traefik.http.middlewares.testheader.headers.accesscontrolalloworiginlist=https://docs.cardanosuite.com,http://docs.cardanosuite.com"
       - "traefik.http.middlewares.testheader.headers.accesscontrolmaxage=100"
       - "traefik.http.middlewares.testheader.headers.addvaryheader=true"
   postgres:
