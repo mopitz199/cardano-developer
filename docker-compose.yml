@@ -90,8 +90,6 @@ services:
       #### Labels define the behavior and rules of the traefik proxy for this container ####
       - "traefik.enable=true" # <== Enable traefik to proxy this container
 
-      # - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolallowmethods=OPTION,GET,POST,PUT,PATCH"
-      # - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolallowcredentials=true"
       - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolalloworiginlist=*"
       - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolallowheaders=*"
 
@@ -226,8 +224,8 @@ services:
     environment:
       SWAGGER_JSON: /spec/swagger.json
     volumes:
-      - ./swagger.json:/spec/swagger.json
-      - ./cors.conf:/cors.conf
+      - ./swagger/swagger.json:/spec/swagger.json
+      - ./swagger/cors.conf:/cors.conf
     labels:
       #### Labels define the behavior and rules of the traefik proxy for this container ####
       - "traefik.enable=true" # <== Enable traefik to proxy this container
