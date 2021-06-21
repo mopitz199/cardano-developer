@@ -91,7 +91,7 @@ services:
       - "traefik.enable=true" # <== Enable traefik to proxy this container
 
       - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolallowmethods=OPTION,GET,POST,PUT,PATCH"
-      # - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolallowcredentials=true"
+      - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolallowcredentials=true"
       - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolalloworiginlist=*"
       # - "traefik.http.middlewares.server-secured-middleware-cors.headers.accesscontrolallowheaders=*"
 
