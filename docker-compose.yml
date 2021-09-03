@@ -105,7 +105,7 @@ services:
       - "traefik.http.routers.server-secured-router.rule=Host(`api.${DOMAIN}`)" # <== Your Domain Name for the https rule 
       - "traefik.http.routers.server-secured-router.tls.certresolver=tls-certificate-resolver" # <== Defining certsresolvers for https
   cardano-node:
-    image: inputoutput/cardano-node:${CARDANO_NODE_VERSION:-1.27.0}
+    image: inputoutput/cardano-node:${CARDANO_NODE_VERSION:-1.29.0}
     command: [
       "run",
       "--config", "/config/config.json",
@@ -135,6 +135,9 @@ services:
       - EXTENDED=true
       - POSTGRES_HOST=${POSTGRES_HOST}
       - POSTGRES_PORT=${POSTGRES_PORT}
+      - NETWORK=${NETWORK:-mainnet}
+      - RESTORE_SNAPSHOT=${RESTORE_SNAPSHOT:-}
+      - RESTORE_RECREATE_DB=N
     depends_on:
       - cardano-node
       - postgres
