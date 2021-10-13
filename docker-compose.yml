@@ -105,7 +105,7 @@ services:
       - "traefik.http.routers.server-secured-router.rule=Host(`api.${DOMAIN}`)" # <== Your Domain Name for the https rule 
       - "traefik.http.routers.server-secured-router.tls.certresolver=tls-certificate-resolver" # <== Defining certsresolvers for https
   cardano-node:
-    image: inputoutput/cardano-node:${CARDANO_NODE_VERSION:-1.27.0}
+    image: inputoutput/cardano-node:${CARDANO_NODE_VERSION:-1.30.0}
     command: [
       "run",
       "--config", "/config/config.json",
