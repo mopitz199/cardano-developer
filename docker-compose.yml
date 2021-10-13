@@ -115,7 +115,6 @@ services:
     ]
     volumes:
       - ./config/network/${NETWORK}/cardano-node:/config
-      - ./config/network/${NETWORK}/genesis:/genesis
       - node-db:/data/db
       - node-ipc:/ipc
     restart: on-failure
