@@ -114,7 +114,7 @@ services:
       "--topology", "/config/topology.json"
     ]
     volumes:
-      # - ./config/network/${NETWORK}/cardano-node:/config
+      - ./config/network/${NETWORK}/cardano-node:/config
       - node-db:/data/db
       - node-ipc:/ipc
     restart: on-failure
